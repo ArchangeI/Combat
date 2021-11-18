@@ -1,0 +1,34 @@
+﻿
+@{
+    Layout = null;
+}
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>Combat Game</title>
+</head>
+<body>
+
+    @if (Model.P1State.Health > 0)
+    {
+        <p style="text-align: center"><span style="font-size: 22pt;"><b>@Model.P1State.playerName WIN</b></span></p>
+    }
+    else
+    {
+        <p style="text-align: center"><span style="font-size: 22pt;"><b>@Model.P2State.playerName WIN</b></span></p>
+    }
+
+    <button class="btn btn-default" onclick="Restart();">Play Again</button>
+ 
+    <script>
+        function Restart() {
+            window.location.href = 'https://localhost:44384/Home/Index';
+        }
+    </script>
+
+    @*window.location.href = 'https://localhost:44384/Home/Start?identity=@ViewData["identity"]';*@
+</body>
+</html>

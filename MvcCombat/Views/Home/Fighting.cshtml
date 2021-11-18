@@ -1,0 +1,52 @@
+﻿
+@{
+    Layout = null;
+}
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>Combat Game</title>
+</head>
+<body>
+
+    <p style="text-align: center"><span style="font-size: 22pt;"><b>Combat started!!!</b></span></p>
+
+    <p>@Model.P1State.playerName health =  @Model.P1State.Health</p>
+    <p>@Model.P2State.playerName health =  @Model.P2State.Health</p>
+
+    @if (Model.Player1Attacks)
+    {
+        <p>@Model.P1State.playerName attacks</p>
+        <p>@Model.P2State.playerName defends</p>
+    }
+    else
+    {
+        <p>@Model.P2State.playerName attacks</p>
+        <p>@Model.P1State.playerName defends</p>
+    }
+
+    <form method="post" action="~/Home/Fighting">
+        <input type="hidden" name="identity" value="@ViewData["identity"]" />
+        <input name="hitAndBlock" type="radio" value="Head" />
+        <span>Head</span> <br />
+        <input name="hitAndBlock" type="radio" value="Body" />
+        <span>Body</span> <br />
+        <input name="hitAndBlock" type="radio" value="Leg" />
+        <span>Leg</span>
+
+        <p>
+            <input type="submit" value="Submit" />
+        </p>
+    </form>
+
+    <script>
+            setTimeout(function () {
+                window.location='https://localhost:44384/Home/Refresh?identity=@ViewData["identity"]';
+            }, 10000);
+    </script>
+
+</body>
+</html>

@@ -1,0 +1,37 @@
+﻿
+@{
+    Layout = null;
+}
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>Combat Game</title>
+</head>
+<body>
+
+    @if (MvcGame.IsSessionStarted(@ViewData["identity"].ToString()))
+    {
+        <p style="text-align: center"><span style="font-size: 22pt;"><b>Combat started!!!</b></span></p>
+
+        <script>
+            setTimeout(function () {
+                window.location='https://localhost:44384/Home/Refresh?identity=@ViewData["identity"]';
+            }, 2000);
+        </script>
+    }
+    else
+    {
+        <p style="text-align: center"><span style="font-size: 22pt;"><b>Looking for opponent...</b></span></p>
+
+        <script>
+            setTimeout(function () {
+                window.location='https://localhost:44384/Home/Waiting?identity=@ViewData["identity"]';
+            }, 5000);
+        </script>
+    }
+
+</body>
+</html>
