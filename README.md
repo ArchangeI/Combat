@@ -1,2 +1,2 @@
 # Combat
-Project made with C#/.NET and ASP .NET core(MVC) during .NET camp from ELEKS
+To testing this project download folders MvcCombat and Combat library
