@@ -9,6 +9,23 @@
 <head>
     <meta name="viewport" content="width=device-width" />
     <title>Combat Game</title>
+    <style>
+        .b1 {
+            background: Tomato; 
+            color: black; 
+            font-size: 9pt; 
+        }
+        .b2 {
+            background: Orange;
+            color: black;
+            font-size: 9pt;
+        }
+        .b3 {
+            background: Yellow;
+            color: black;
+            font-size: 9pt;
+        }
+    </style>
 </head>
 <body>
 
@@ -28,23 +45,18 @@
         <p>@Model.P1State.playerName defends</p>
     }
 
-    <form method="post" action="~/Home/Fighting">
-        <input type="hidden" name="identity" value="@ViewData["identity"]" />
-        <input name="hitAndBlock" type="radio" value="Head" />
-        <span>Head</span> <br />
-        <input name="hitAndBlock" type="radio" value="Body" />
-        <span>Body</span> <br />
-        <input name="hitAndBlock" type="radio" value="Leg" />
-        <span>Leg</span>
+<form method="post" action="~/Home/Fighting">
+    <input type="hidden" name="identity" value="@ViewData["identity"]"/>
 
-        <p>
-            <input type="submit" value="Submit" />
-        </p>
-    </form>
+    <p> <button class="b1" type="submit" name="hitAndBlock" value="Head">Head</button> </p>
+    <p> <button class="b2" type="submit" name="hitAndBlock" value="Body">Body</button> </p>
+    <p> <button class="b3" type="submit" name="hitAndBlock" value="Leg">Leg</button> </p>
+
+</form>
 
     <script>
             setTimeout(function () {
-                window.location='https://localhost:44384/Home/Refresh?identity=@ViewData["identity"]';
+                window.location='Refresh?identity=@ViewData["identity"]';
             }, 10000);
     </script>
 

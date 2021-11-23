@@ -1,0 +1,26 @@
+﻿@{
+    Layout = null;
+}
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>Combat Game</title>
+    
+</head>
+<body>
+
+    <p style="text-align: center"><span style="font-size: 22pt;"><b>Select with who you want to play</b></span></p>
+
+    <form method="post" action="~/Home/Selecting">
+        <input type="hidden" name="identity" value="@ViewData["identity"]" />
+
+        <p> <button  type="submit" name="type" value="Bot">Bot</button> </p>
+        <p> <button  type="submit" name="type" value="Player">Player</button> </p>
+        
+    </form>
+ 
+</body>
+</html>

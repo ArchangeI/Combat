@@ -7,6 +7,8 @@
 		private int _damageToBody = 15;
 		private int _damageToLeg = 5;
 
+		public bool FightWithBot;
+
 		public int Health { get; private set; }
 
 		public PlayerState(string playerName)

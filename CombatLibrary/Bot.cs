@@ -10,10 +10,9 @@ namespace CombatLibrary
         private const int MinRange = 1;
         private const int MaxRange = 4;
 
-        public static bool botCanDecide = true;
-        public static HitAndBlock botChoise;
+        public static string Name = "Bot";
 
-        public static HitAndBlock RandomChoise() => (HitAndBlock)values.GetValue(random.Next(MinRange, MaxRange));
+        public static HitAndBlock BotChoise() => (HitAndBlock)values.GetValue(random.Next(MinRange, MaxRange));
 
     }
 }

@@ -7,13 +7,19 @@ using CombatLibrary;
 
 namespace MvcCombat
 {
+    public enum TypeOfGame
+    {
+        Bot = 1,
+        Player = 2
+    }
+
     public static class MvcGame
     {
         static MvcGame()
         {
             Engine.CombatSessionStarted += Engine_CombatSessionStarted;
         }
-
+         
         private static List<CombatSession> sessions = new List<CombatSession>();
 
         public static List<PlayerState> players = new List<PlayerState>();
@@ -60,6 +66,22 @@ namespace MvcCombat
             return true;
         }
 
+        public static bool IsFightWithBot(string id)
+        {
+            foreach (var player in players)
+            {
+                if (player.playerName == id)
+                {
+                    if (player.FightWithBot)
+                    {
+                        return true;
+                    }
+                }
+            }
+
+            return false;
+        }
+
         public static State GetState(string id)
         {
             foreach (var session in sessions)
@@ -91,13 +113,13 @@ namespace MvcCombat
                     if (state.Player1Attacks)
                     {
                         session.AttackerAttackAt(hitAndBlock);
-                        return session.GetState();
                     }
                     else
                     {
-                        session.DefenderDefends(hitAndBlock);
-                        return session.GetState();
+                        session.DefenderDefends(hitAndBlock);   
                     }
+
+                    return session.GetState();
                 }
 
                 if (state.P2State.playerName == identity)
@@ -105,14 +127,47 @@ namespace MvcCombat
                     if (state.Player2Attacks)
                     {
                         session.AttackerAttackAt(hitAndBlock);
-                        return session.GetState();
                     }
                     else
                     {
                         session.DefenderDefends(hitAndBlock);
-                        return session.GetState();
                     }
+
+                    return session.GetState();
                 }
+            }
+
+            return null;
+        }
+
+        public static State BotChoise(string identity, HitAndBlock hitAndBlock)
+        {
+            foreach (var session in sessions)
+            {
+                state = session.GetState();
+
+                if (state.P1State.playerName == identity)
+                {
+                    if (state.Player1Attacks)
+                    {
+                        session.AttackerAttackAt(hitAndBlock);
+                    }
+                    else
+                    {
+                        session.DefenderDefends(hitAndBlock);
+                    }
+                    if (state.Player2Attacks)
+                    {
+                        session.AttackerAttackAt(Bot.BotChoise());
+                    }
+                    else
+                    {
+                        session.DefenderDefends(Bot.BotChoise());
+                    }
+
+                    return session.GetState();
+                }
+
             }
 
             return null;

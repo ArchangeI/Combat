@@ -7,8 +7,6 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "MvcCombat", "MvcCombat.cspr
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "CombatLibrary", "..\CombatLibrary\CombatLibrary.csproj", "{BE0AB1B5-9CB3-4D2D-BEEC-18D9052993B4}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ClassLibrary1", "..\ClassLibrary1\ClassLibrary1.csproj", "{46233A0E-BC1E-428D-A96F-A35D5511A0F8}"
-EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -23,10 +21,6 @@ Global
 		{BE0AB1B5-9CB3-4D2D-BEEC-18D9052993B4}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{BE0AB1B5-9CB3-4D2D-BEEC-18D9052993B4}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{BE0AB1B5-9CB3-4D2D-BEEC-18D9052993B4}.Release|Any CPU.Build.0 = Release|Any CPU
-		{46233A0E-BC1E-428D-A96F-A35D5511A0F8}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{46233A0E-BC1E-428D-A96F-A35D5511A0F8}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{46233A0E-BC1E-428D-A96F-A35D5511A0F8}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{46233A0E-BC1E-428D-A96F-A35D5511A0F8}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
