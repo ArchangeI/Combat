@@ -1,4 +1,5 @@
-﻿
+﻿@using CombatLibrary;
+
 @{
     Layout = null;
 }
@@ -11,8 +12,8 @@
     <title>Combat Game</title>
 </head>
 <body>
-
-    @if (MvcGame.IsSessionStarted(@ViewData["identity"].ToString()))
+ 
+    @if (GameManager.IsSessionStarted(@ViewData["identity"].ToString()))
     {
         <p style="text-align: center"><span style="font-size: 22pt;"><b>Combat started!!!</b></span></p>
 
@@ -26,6 +27,12 @@
     else
     {
         <p style="text-align: center"><span style="font-size: 22pt;"><b>Looking for opponent...</b></span></p>
+
+        <form method="post" action="~/Home/SessionWithBot">
+            <input type="hidden" name="identity" value="@ViewData["identity"]" />
+            <p> <button type="submit">Fight With Bot</button> </p>
+
+        </form>
 
         <script>
             setTimeout(function () {

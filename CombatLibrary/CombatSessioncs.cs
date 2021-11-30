@@ -4,7 +4,7 @@
     {
         private readonly State _state;
 
-        public CombatSession(PlayerState player1, PlayerState player2)
+        public CombatSession(Player player1, Player player2)
         {
             _state = new State
             {

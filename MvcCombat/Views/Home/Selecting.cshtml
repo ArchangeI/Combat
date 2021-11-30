@@ -16,10 +16,11 @@
 
     <form method="post" action="~/Home/Selecting">
         <input type="hidden" name="identity" value="@ViewData["identity"]" />
+        <input type="hidden" name="name" value="@ViewData["name"]" />
 
-        <p> <button  type="submit" name="type" value="Bot">Bot</button> </p>
-        <p> <button  type="submit" name="type" value="Player">Player</button> </p>
-        
+        <p> <button type="submit" name="type" value="Bot">Bot</button> </p>
+        <p> <button type="submit" name="type" value="Player">Player</button> </p>
+
     </form>
  
 </body>

@@ -2,9 +2,9 @@
 {
 	public class State
 	{
-		public PlayerState P1State { get; set; }
+		public Player P1State { get; set; }
 
-		public PlayerState P2State { get; set; }
+		public Player P2State { get; set; }
 
 		public bool Player1Attacks { get; set; }
 

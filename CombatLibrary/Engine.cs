@@ -14,18 +14,18 @@ namespace CombatLibrary
 
     public static class Engine
     {
-        public static Queue<PlayerState> PlayersWaitingForGame = new Queue<PlayerState>();
+        public static Queue<Player> PlayersWaitingForGame = new Queue<Player>();
         public static event EventHandler<CombatSession> CombatSessionStarted;
 
-        public static CombatSession CreateSession(PlayerState player1, PlayerState player2)
+        public static CombatSession CreateSession(Player player1, Player player2)
         {
             return new CombatSession(player1, player2);
         }
 
 
-        public static PlayerState CreateDefaultPlayer(string identity)
+        public static Player CreateDefaultPlayer(string name)
         {
-            var player = new PlayerState(identity);
+            var player = new Player(name);
             PlayersWaitingForGame.Enqueue(player);
 
             if (PlayersWaitingForGame.Count >= 2)

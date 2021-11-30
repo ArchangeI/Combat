@@ -31,18 +31,18 @@
 
     <p style="text-align: center"><span style="font-size: 22pt;"><b>Combat started!!!</b></span></p>
 
-    <p>@Model.P1State.playerName health =  @Model.P1State.Health</p>
-    <p>@Model.P2State.playerName health =  @Model.P2State.Health</p>
+    <p>@Model.P1State.Name health =  @Model.P1State.Health</p>
+    <p>@Model.P2State.Name health =  @Model.P2State.Health</p>
 
     @if (Model.Player1Attacks)
     {
-        <p>@Model.P1State.playerName attacks</p>
-        <p>@Model.P2State.playerName defends</p>
+        <p>@Model.P1State.Name attacks</p>
+        <p>@Model.P2State.Name defends</p>
     }
     else
     {
-        <p>@Model.P2State.playerName attacks</p>
-        <p>@Model.P1State.playerName defends</p>
+        <p>@Model.P2State.Name attacks</p>
+        <p>@Model.P1State.Name defends</p>
     }
 
 <form method="post" action="~/Home/Fighting">

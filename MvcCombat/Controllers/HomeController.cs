@@ -1,11 +1,4 @@
 ﻿using Microsoft.AspNetCore.Mvc;
-using Microsoft.Extensions.Logging;
-using MvcCombat.Models;
-using System;
-using System.Collections.Generic;
-using System.Diagnostics;
-using System.Linq;
-using System.Threading.Tasks;
 using CombatLibrary;
 
 namespace MvcCombat.Controllers
@@ -19,46 +12,51 @@ namespace MvcCombat.Controllers
         }
 
         [HttpGet]
-        public IActionResult Selecting(string identity)
+        public IActionResult Selecting(string name)
         {
-            ViewData["identity"] = identity;
+            ViewData["name"] = name;
 
             return View();
         }
 
         [HttpPost]
-        public IActionResult Selecting(TypeOfGame type, string identity)
+        public IActionResult Selecting(TypeOfGame type, string name)
         {
-            ViewData["identity"] = identity;
+            var player = Engine.CreateDefaultPlayer(name);
+
+            GameManager.players.Add(player);
+
+            ViewData["name"] = name;
+            ViewData["identity"] = player.Identity;
 
             if (type == TypeOfGame.Bot)
             {
-                var player = Engine.CreateDefaultPlayer(identity);
-                player.FightWithBot = true;
-                MvcGame.players.Add(player);
-                Engine.CreateDefaultPlayer(Bot.Name);
-                return View("Waiting");
+                SessionWithBot(player.Identity);
             }
 
             return View("Waiting");
         }
 
+        public IActionResult SessionWithBot(string identity)
+        {
+            var player = GameManager.GetPlayer(identity);
+            player.FightWithBot = true;
+            Engine.CreateDefaultPlayer(new Bot().Name);
+            ViewData["identity"] = identity;
+            return View("Waiting");
+        }
+
         public IActionResult Waiting(string identity)
         {
-            if (MvcGame.IsPlayerNotCreated(identity))
-            {
-                var player = Engine.CreateDefaultPlayer(identity);
-                MvcGame.players.Add(player);
-            }
-
             ViewData["identity"] = identity;
-            ViewData["State"] = MvcGame.GetState(identity);
+            ViewData["State"] = GameManager.GetState(identity);
+
             return View();
         }
 
         public IActionResult Refresh(string identity)
         {
-            var Model = MvcGame.GetState(identity);
+            var Model = GameManager.GetState(identity);
             ViewData["identity"] = identity;
 
             if (Model.P1State.Health > 0 && Model.P2State.Health > 0)
@@ -71,14 +69,7 @@ namespace MvcCombat.Controllers
 
         public IActionResult Fighting(string identity, HitAndBlock hitAndBlock)
         {
-            if (MvcGame.IsFightWithBot(identity))
-            {
-                var ModelWithBot = MvcGame.BotChoise(identity, hitAndBlock);
-                ViewData["identity"] = identity;
-                return View(ModelWithBot);
-            }
-
-            var Model = MvcGame.PlayerChoise(identity, hitAndBlock);
+            var Model = GameManager.PlayerChoise(identity, hitAndBlock);
 
             ViewData["identity"] = identity;
 
