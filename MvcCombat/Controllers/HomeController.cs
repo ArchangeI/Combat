@@ -1,10 +1,20 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using CombatLibrary;
+using AutoMapper;
+using Combat.DAL.Entities;
+using Combat.DAL.EF;
 
 namespace MvcCombat.Controllers
 {
     public class HomeController : Controller
     {
+        private CombatContext _context;
+
+        public HomeController(CombatContext context)
+        {
+            _context = context;
+        }
+
         [HttpGet]
         public IActionResult Index()
         {
@@ -26,12 +36,19 @@ namespace MvcCombat.Controllers
 
             GameManager.players.Add(player);
 
+            var config = new MapperConfiguration(cfg => cfg.CreateMap<Player, PlayerDAL>());
+            var mapper = new Mapper(config);
+            var playerDAL = mapper.Map<Player, PlayerDAL>(player);
+
+            _context.Add(playerDAL);
+            _context.SaveChanges();
+
             ViewData["name"] = name;
-            ViewData["identity"] = player.Identity;
+            ViewData["identity"] = player.Id;
 
             if (type == TypeOfGame.Bot)
             {
-                SessionWithBot(player.Identity);
+                SessionWithBot(player.Id);
             }
 
             return View("Waiting");
@@ -63,6 +80,11 @@ namespace MvcCombat.Controllers
             {
                 return View("Fighting", Model);
             }
+
+            PlayerDAL player = _context.Players.Find(identity);
+            if (player != null)
+                _context.Players.Remove(player);
+            _context.SaveChanges();
 
             return View("EndSession", Model);
         }

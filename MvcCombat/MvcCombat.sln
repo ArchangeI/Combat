@@ -7,6 +7,8 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "MvcCombat", "MvcCombat.cspr
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "CombatLibrary", "..\CombatLibrary\CombatLibrary.csproj", "{BE0AB1B5-9CB3-4D2D-BEEC-18D9052993B4}"
 EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Combat.DAL", "..\Combat.DAL\Combat.DAL.csproj", "{6D51834C-3A15-465F-B7B9-99B2D4EB5EDC}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -21,6 +23,10 @@ Global
 		{BE0AB1B5-9CB3-4D2D-BEEC-18D9052993B4}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{BE0AB1B5-9CB3-4D2D-BEEC-18D9052993B4}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{BE0AB1B5-9CB3-4D2D-BEEC-18D9052993B4}.Release|Any CPU.Build.0 = Release|Any CPU
+		{6D51834C-3A15-465F-B7B9-99B2D4EB5EDC}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{6D51834C-3A15-465F-B7B9-99B2D4EB5EDC}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{6D51834C-3A15-465F-B7B9-99B2D4EB5EDC}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{6D51834C-3A15-465F-B7B9-99B2D4EB5EDC}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

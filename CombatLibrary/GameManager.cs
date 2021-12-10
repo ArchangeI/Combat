@@ -29,8 +29,8 @@ namespace CombatLibrary
 
         private static CombatSession GetSession(string id)
         {
-            var session = sessions.Where(x => x.GetState().P1State.Identity == id
-                || x.GetState().P2State.Identity == id)
+            var session = sessions.Where(x => x.GetState().P1State.Id == id
+                || x.GetState().P2State.Id == id)
                 .FirstOrDefault();
 
             return session;
@@ -48,7 +48,7 @@ namespace CombatLibrary
         public static State GetState(string id)
         {
             var state = sessions.Select(x => x.GetState())
-                .Where(x => x.P1State.Identity == id || x.P2State.Identity == id)
+                .Where(x => x.P1State.Id == id || x.P2State.Id == id)
                 .FirstOrDefault();
 
             return state;
@@ -56,7 +56,7 @@ namespace CombatLibrary
 
         public static Player GetPlayer(string id)
         {
-            var player = players.Where(x => x.Identity == id)
+            var player = players.Where(x => x.Id == id)
                          .FirstOrDefault();
 
             return player;
@@ -73,7 +73,7 @@ namespace CombatLibrary
         {
             var state = GetState(identity);
             var session = GetSession(identity);
-
+            
             void Fighting(bool attacks, CombatSession session, HitAndBlock hitAndBlock)
             {
                 if (attacks)
@@ -86,7 +86,7 @@ namespace CombatLibrary
                 }
             }
 
-            if (state.P1State.Identity == identity)
+            if (state.P1State.Id == identity)
             {
                 Fighting(state.Player1Attacks, session, hitAndBlock);
 
@@ -96,7 +96,7 @@ namespace CombatLibrary
                 return session.GetState();
             }
 
-            if (state.P2State.Identity == identity)
+            if (state.P2State.Id == identity)
             {
                 Fighting(state.Player2Attacks, session, hitAndBlock);
                 return session.GetState();

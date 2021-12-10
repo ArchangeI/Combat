@@ -13,12 +13,12 @@ namespace CombatLibrary
 
 		public int Health { get; private set; }
 
-		public string Identity { get; private set; }
+		public string Id { get; private set; }
 
 		public Player(string playerName)
 		{
 			Name = playerName;
-			Identity = Guid.NewGuid().ToString();
+			Id = Guid.NewGuid().ToString();
 			Health = 100;
 		}
 
@@ -43,15 +43,15 @@ namespace CombatLibrary
 			return 0;
 		}
 
-		public void Hit(Player otherPlayerState, HitAndBlock typeOfHit, HitAndBlock typeOfBlock)
+		public void Hit(Player otherPlayer, HitAndBlock typeOfHit, HitAndBlock typeOfBlock)
 		{
-			if (otherPlayerState.Health <= 0)
+			if (otherPlayer.Health <= 0)
 			{
-				otherPlayerState.Health = 0;
+				otherPlayer.Health = 0;
 			}
 			else
 			{
-				otherPlayerState.Health -= HowMuchDamageIDid(typeOfHit, typeOfBlock);
+				otherPlayer.Health -= HowMuchDamageIDid(typeOfHit, typeOfBlock);
 			}
 		}
 	}
